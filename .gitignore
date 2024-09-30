@@ -25,5 +25,3 @@ dist-ssr
 
 # Secure directories and files
 .env
-.env.development
-.env.production

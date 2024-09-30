@@ -7,6 +7,10 @@
   ],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error", // Check prettier
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // Check unused vars, ignores args starting with "_"
+    "react-hooks/rules-of-hooks": "error", // Check React hooks
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-explicit-any": 0
   }
 }
