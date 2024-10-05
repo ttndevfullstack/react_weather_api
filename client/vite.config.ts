@@ -4,6 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  mode: process.env.VITE_MODE || 'development',
   plugins: [react()],
   resolve: {
     alias: {

@@ -1,4 +1,3 @@
-import config from '@/config/index';
 import weatherConfig from '@/config/weather';
 import Footer from '@/components/Footer';
 import SearchBar from '@/components/SearchBar';
@@ -9,7 +8,7 @@ import { IQuery, IWeatherData } from '@/types/models';
 const Home = () => {
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
   const [query, setQuery] = useState<IQuery>({
-    location: import.meta.env.VITE_DEFAULT_LOCATION,
+    location: import.meta.env.VITE_APP_DEFAULT_LOCATION,
     startDate: now().current(),
     endDate: now().addDays(4),
   });
@@ -35,12 +34,11 @@ const Home = () => {
 
   const fetchWeatherData = async (query: IQuery) => {
     console.log('Fetching weather data');
-    const WEATHER_ENDPOINT = `${config.WEATHER_API_URL}/${query.location}/${query.startDate}/${query.endDate}?key=${import.meta.env.VITE_WEATHER_API_KEY}`;
-    const response = await fetch(WEATHER_ENDPOINT);
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_API_ENDPOINT}/weather?location=${query.location}&startDate=${query.startDate}&endDate=${query.endDate}`);
     const data = await response.json();
     if (!data) return;
     console.log(data);
-    setWeatherData(data);
+    setWeatherData(data.data);
   };
 
   useEffect(() => {
